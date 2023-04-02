@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
+import { authState, getUsers, readAuth, setAuth, setUsers } from './features';
+import { Router } from './routes';
+import { Header } from './components';
 
-function App() {
+function App() 
+{
+  const dispach = useDispatch();
+  const { token } = useSelector(authState);
+  
+  function loadAuth ()
+  {
+    const auth = readAuth();
+    dispach(setAuth(auth))
+  }
+
+  async function loadUsers ()
+  {
+    if(token) return;
+    const users = await getUsers(token);;
+    dispach(setUsers(users))
+  }
+
+  useEffect(() =>
+  {
+    loadAuth ();
+  }, [])
+
+  useEffect(() =>
+  {
+    loadUsers ();
+  }, [token])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <HashRouter>
+        <Router />
+      </HashRouter>
     </div>
   );
 }
