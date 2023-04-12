@@ -1,44 +1,48 @@
-import { FormEvent } from 'react';
-import { loginUser, writeAuth } from '../features';
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { loginUser } from '../features';
+import { Form } from '../components';
+import { writeAuth } from "../services";
+import "../styles/form-handler.css";
 
 export function Login ()
 {
+    
     const navigation = useNavigate()
-    async function onSubmit (e : FormEvent)
-    {
-        e.preventDefault();
-        e.stopPropagation();
 
-        const formData = new FormData(e.target as HTMLFormElement);
-        const username = formData.get("username") as string;
-        const password = formData.get("password") as string;
+    async function onSubmit (data: {username: string, password: string})
+    {
+        const {username, password} = data;
 
         if(!username || !password) 
         {
-            return;
+            return "Algum campo não foi preenchido!";
         }
-
+        
         const response = await loginUser(username, password);
+        
         if(response.result === "success")
         {
-            console.log("Login correto!", response.data)
-            writeAuth(response.data)
-            navigation("/")
+            //console.log("Login realizado com sucesso!", response.data);
+            writeAuth(response.data);
+            navigation("/");
+            return "";
         }
         else 
         {
-            console.log("Login errado!")
+            return response.error!;
         }
     }
 
     return (
-        <main>
-            <form onSubmit={onSubmit}>
-                <input type="text" required name="username" placeholder='Usuario'/>
-                <input type="password" required name="password" placeholder='Senha' />
-                <button>Login</button>
-            </form>
+        <main className="Login Center">
+            <div className="Panel">
+                <Form onSubmit={onSubmit} name="Login">
+                    <input type="text" required name="username" placeholder='Usuario'/>
+                    <input type="password" required name="password" placeholder='Senha' />
+                    <button>Entrar</button>
+                    <NavLink className="button" to="/register">Cadastro</NavLink>
+                </Form>
+            </div>
         </main>
     );
 }

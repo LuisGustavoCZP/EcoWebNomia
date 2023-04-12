@@ -1,0 +1,30 @@
+.Center {
+    justify-content: center;
+    align-items: center;
+}
+
+.Center > .Panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 300px;
+}
+
+.Panel > h2 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: .2em;
+    font-size: 32px;
+    user-select: none;
+}
+
+.Panel > .button {
+    width: 100%;
+    font-size: 18px;
+    text-transform: uppercase;
+}

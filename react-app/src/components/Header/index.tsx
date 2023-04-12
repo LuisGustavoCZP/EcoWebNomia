@@ -1,4 +1,6 @@
 import { CSSProperties } from "react";
+import { NavLink } from "react-router-dom";
+import "../../styles/nav.css";
 
 export function Header ()
 {
@@ -15,7 +17,10 @@ export function Header ()
         <header style={style}>
             <h1>EcoWebNomia</h1>
             <nav>
-                <a href="/">Home</a>
+                <NavLink className="button light" to="/">Home</NavLink>
+                <NavLink className="button light" to="/debts">Gastos</NavLink>
+                <NavLink className="button light" to="/gains">Ganhos</NavLink>
+                <NavLink className="button light" to="/logout">Sair</NavLink>
             </nav>
         </header>
     )

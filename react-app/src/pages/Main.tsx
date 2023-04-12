@@ -1,13 +1,10 @@
-import { useSelector } from 'react-redux';
-import { authState } from '../features';
+import { AuthProps } from "../models";
 
-export function Main ()
+export function Main ({auth} : AuthProps)
 {
-    const { name } = useSelector(authState);
-
     return (
         <main>
-            <h2>Olá, {name}</h2>
+            <h2>Olá, {auth.name}</h2>
         </main>
     );
 }
