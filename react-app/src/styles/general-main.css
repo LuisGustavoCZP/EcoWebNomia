@@ -1,0 +1,10 @@
+main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 20px 30px;
+}
+
+main h2 {
+    margin: 0;
+}

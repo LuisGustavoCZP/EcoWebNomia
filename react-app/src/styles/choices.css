@@ -1,0 +1,16 @@
+.Choices {
+    display: flex;
+    flex-grow: 1;
+    border: 2px solid var(--blueLight);
+    color: var(--blueMid);
+    padding: 5px 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: var(--white);
+    user-select: none;
+    cursor: pointer;
+}
+
+.Choices:hover {
+    border-color: var(--blueGlow);
+}

@@ -1,4 +1,4 @@
-import type { IReponse } from "../../models";
+import type { IAuth, IResponse } from "../../models";
 import { FormParser } from "../../utils";
 
 type APIPath = "users" | "debts" | "gains" | "shopping" | "login";
@@ -18,20 +18,24 @@ export class API
         "shopping",
     ]
 
-    async get (path : APIPath, token? : string)
+    async get (path : APIPath, auth? : IAuth)
     {
         const options : RequestInit = {
             method:"GET"
         }
 
-        const response = await fetch(`${this.url}?sheet=${path}${token?`&token=${token}`:''}`, options)
+        let authString = '';
+        if(auth) 
+            authString = Object.entries(auth).map(([key, value]) => `${key}=${value}`).join("&");
+
+        const response = await fetch(`${this.url}?sheet=${path}${authString?`&${authString}`:''}`, options)
         .then(resp => resp.json())
         .catch(err => console.log(err));
 
-        return response as IReponse;
+        return response as IResponse;
     }
 
-    async post (path : APIPath, body : Object, token? : string)
+    async post (path : APIPath, body : Object, auth? : IAuth)
     {
         const formData = FormParser.formify(body);
 
@@ -40,11 +44,23 @@ export class API
             body: formData
         }
 
-        const response = await fetch(`${this.url}?sheet=${path}${token?`&token=${token}`:''}`, options)
-        .then(resp => resp.json())
-        .catch(err => console.log(err));
+        let authString = '';
+        if(auth) 
+            authString = Object.entries(auth).map(([key, value]) => `${key}=${value}`).join("&");
 
-        return response as IReponse;
+        const response = await fetch(`${this.url}?sheet=${path}${authString?`&${authString}`:''}`, options)
+        .then(resp => resp.json())
+        /* .then((resp : IResponse) => {
+            if(resp.result !== "success")
+            {
+                throw new Error(resp.error!);
+                
+            } 
+            return resp;
+        }) */
+        .catch(err => console.log(err));
+        
+        return response as IResponse;
     }
 }
 const baseAPI = "AKfycbxNkxHe4p1E45Tiuo-4lyy7Vb2nQMVwqy4ZdwG5UzoKXhEUtTlClGL2ILYhSfXDUV22AQ";

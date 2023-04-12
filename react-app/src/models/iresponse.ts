@@ -1,4 +1,4 @@
-export interface IReponse
+export interface IResponse
 {
     result: 'success' | 'error',
     data?: any

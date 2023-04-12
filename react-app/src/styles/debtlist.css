@@ -1,0 +1,15 @@
+.DebtList {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+}
+
+.DebtList > li {
+    display: flex;
+    background-color: aliceblue;
+    padding: 10px;
+    justify-content: center;
+}
