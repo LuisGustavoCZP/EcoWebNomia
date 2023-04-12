@@ -1,5 +1,5 @@
 import { useDebts } from '../../hooks/use-debts';
-import "../../style/debtlist.css"
+import "../../styles/debtlist.css"
 
 export function DebtList () 
 {
