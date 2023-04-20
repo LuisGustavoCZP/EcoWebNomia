@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { authState, getUsers, setAuth, setUsers } from '../../features';
+import { authState, setAuth } from '../../features';
 import { readAuth } from "../../services";
 
 export function useAuth ()
@@ -19,22 +19,8 @@ export function useAuth ()
 
     useEffect(() =>
     {
-        loadAuth ();
+        if(!auth || !auth.token) loadAuth ();
     }, [])
 
     return {auth};
 }
-
-/* 
-    async function loadUsers ()
-    {
-        if(!auth.token) return;
-        const users = await getUsers(auth);
-        console.log(users)
-        dispach(setUsers(users))
-    } 
-    useEffect(() =>
-    {
-        loadUsers ();
-    }, [auth.token])
-*/

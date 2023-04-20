@@ -1,19 +1,21 @@
-import { FormEvent, Fragment, useEffect, useState } from "react";
+import { CSSProperties, FormEvent, Fragment, useEffect, useState } from "react";
 import { Select } from "../Select";
 import { IOptions } from "../../models";
-import "../../styles/choices.css";
+import "./style.css";
 
 interface ChoicesProps
 {
     wordList: [string, string][];
     initial?: string;
+    style?: CSSProperties;
     onChange?: (select : string) => void;
 }
 
-export function Choices ({wordList, initial=wordList[0][0], onChange = undefined} : ChoicesProps)
+export function Choices ({wordList, initial=wordList[0][0], onChange = undefined, style} : ChoicesProps)
 {
     const allWords : IOptions = wordList.map(([, w], i) => [w, i]);
-    const initialIndex = wordList.findIndex(([w]) => w === initial);
+    let initialIndex = wordList.findIndex(([w]) => w === initial);
+    if(initialIndex < 0) initialIndex = 0;
 
     const [selected, setSelected] = useState<number>(initialIndex);
     const [showing, setShow] = useState(false);
@@ -86,23 +88,22 @@ export function Choices ({wordList, initial=wordList[0][0], onChange = undefined
             <Select wordList={allWords} selected={selected} onSelect={(i) => 
             {
                 if(i !== undefined) setSelected(i!);
+                else setShow(false);
             }}/>
         )
     }
 
     useEffect(() => 
     {
-        console.log("Select", selected);
         select();
-
     }, [selected])
     
     return (
-        <Fragment>
-            <div className="Choices" onKeyDown={(e) => onKeyDown(e as any)} onClick={showOptions}>
-                {wordList[selected][1]}
-            </div>
+        <div style={style} className="Choices">
+            <span className="viewer" onKeyDown={(e) => onKeyDown(e as any)} onClick={showOptions}>
+                {wordList[selected]?.[1]}
+            </span>
             {renderList ()}
-        </Fragment>
+        </div>
     );
 }

@@ -4,18 +4,18 @@ import { IDebt } from '../../models'
 import { RootState } from '../../store'
 
 interface IDebtsState {
-  debts: IDebt[]
+  debts: IDebt[] | undefined
 }
 
 const initialState: IDebtsState = {
-  debts: []
+  debts: undefined
 }
 
 export const debtsSlice = createSlice({
   name: 'debts',
   initialState,
   reducers: {
-    setDebts: (state, action: PayloadAction<IDebt[]>) => 
+    setDebts: (state, action: PayloadAction<IDebt[] | undefined>) => 
     {
       state.debts = action.payload;
     },

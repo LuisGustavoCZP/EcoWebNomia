@@ -1,0 +1,140 @@
+.DebtList {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    gap: 10px;
+}
+
+.DebtList > li {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    justify-content: center;
+    width: 100%;
+}
+
+.DebtItem {
+    background-color: var(--defaultLight);
+}
+
+.DebtItem.overdue {
+    --defaultLight: var(--redLight);
+    --defaultMid: var(--redMid);
+    --defaultDark: var(--redDark);
+    --defaultGlow: var(--redGlow);
+}
+
+.DebtItem, .DebtItem div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 0 5px 0;
+}
+
+.DebtItem span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.DebtItem > span {
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.DebtItem > :not(:first-child) {
+    margin: 0 5px;
+}
+
+.DebtItem > .debt-header > span {
+    height: 100%;
+    color: var(--white);
+    background-color: var(--defaultDark);
+    
+    padding: 10px 10px 10px 10px;
+}
+
+.DebtItem > .debt-header > span:first-child {
+    max-width: 40%;
+    border-bottom-right-radius: 15px;
+}
+
+.DebtItem > .debt-header > span:last-child {
+    border-bottom-left-radius: 15px;
+}
+
+.DebtItem > .debt-header > span > span:first-child {
+    justify-content: flex-start;
+}
+
+.DebtItem > .debt-header > span > span:last-child {
+    justify-content: flex-end;
+}
+
+.DebtItem > .debt-header > span, .DebtItem > .debt-header > span:first-child > span:last-child {
+    justify-content: space-between;
+}
+
+.DebtItem > .debt-body, .DebtItem > .debt-parcels, .DebtItem > .debt-payments {
+    justify-content: space-between;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, .8);
+}
+
+.DebtItem > .debt-body .paid, .DebtItem > .debt-body .rest {
+    margin: 0 .3rem;
+}
+
+.DebtItem .op {
+    justify-content: flex-end;
+    margin: 0 .5rem;
+    user-select: none;
+}
+
+.DebtItem > .debt-body .total {
+    justify-content: flex-end;
+}
+
+.DebtItem .currency {
+    user-select: none;
+    font-weight: bolder;
+    justify-content: flex-end;
+    margin-right: .3rem;
+}
+
+.DebtItem > .debt-body .paid {
+    color: var(--redMid);
+}
+
+.DebtItem > .debt-body .rest {
+    justify-content: flex-end;
+}
+
+.DebtItem > .debt-parcels > :first-child {
+    gap: .5rem;
+}
+
+.DebtItem .date {
+    font-size: 1.4rem;
+    flex-grow: 0;
+    color: var(--defaultGlow);
+}
+
+.DebtItem .category {
+    font-size: 1.2rem;
+    flex-grow: 0;
+    font-weight: 700;
+}
+
+.DebtItem .description {
+    font-size: .9rem;
+}
+
+.DebtItem .creditor {
+    font-size: 1rem;
+    padding: 0 10px;
+}

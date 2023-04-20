@@ -15,3 +15,10 @@ export function writeAuth ({token, name, id} : IAuth)
     localStorage.setItem("name", name);
     localStorage.setItem("id", id.toString());
 }
+
+export function eraseAuth ()
+{
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    localStorage.removeItem("id");
+}

@@ -1,0 +1,28 @@
+:root {
+    --white:white;
+    --blueLight: rgb(197, 233, 245);
+    --blueMid: rgb(108, 135, 145);
+    --blueDark: rgb(60, 74, 78);
+    --blueGlow: rgb(0, 255, 255);
+    --black: rgba(20, 20, 30, 1);
+    --black-alpha: rgba(20, 20, 30, .3);
+    --redLight: rgb(252, 221, 201);
+    --redMid: rgba(204, 45, 45, 1);
+    --redDark: rgb(102, 24, 24);
+    --redGlow: rgb(255, 0, 0);
+
+    --defaultLight: var(--blueLight);
+    --defaultMid: var(--blueMid);
+    --defaultDark: var(--blueDark);
+    --defaultGlow: var(--blueGlow);
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+::placeholder {
+    user-select: none;
+}

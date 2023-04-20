@@ -1,10 +1,13 @@
-import { AuthProps } from "../models";
+import { Fragment } from "react";
+import { UserProps } from "../models";
 
-export function Main ({auth} : AuthProps)
+export function Main ({auth, debts} : UserProps)
 {
     return (
-        <main>
-            <h2>Olá, {auth.name}</h2>
-        </main>
+        <Fragment>
+            <main>
+                <h2>Olá, {auth.name}</h2>
+            </main>
+        </Fragment>
     );
 }

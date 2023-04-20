@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import "../../styles/loading.css";
+import "./style.css";
 import { LoadingSpinner } from "./LoadingSpinner";
 
 export function Loading ({size = 100} : {size? : number})

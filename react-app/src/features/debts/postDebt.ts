@@ -3,7 +3,7 @@ import { IAuth } from "../../models";
 
 export async function postDebt (debt: any, auth: IAuth)
 {
-    const response = await api.post("debts", debt,auth);
+    const response = await api.post("debts", debt, auth);
     console.log(response)
-    return response.data
+    return response
 }

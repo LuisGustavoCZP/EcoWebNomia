@@ -1,15 +1,16 @@
-import { useState, FormEvent, PropsWithChildren } from "react";
+import { useState, FormEvent, PropsWithChildren, CSSProperties } from "react";
 import { Loading } from '../../components';
-import "../../styles/form.css";
+import "./style.css";
 
 interface FormProps extends PropsWithChildren 
 {
     name:string,
     onSubmit: (data : any) => Promise<string>,
-    autoComplete?: boolean
+    autoComplete?: boolean,
+    style?: CSSProperties
 }
 
-export function Form ({name, onSubmit, autoComplete = false,  children} : FormProps) 
+export function Form ({name, onSubmit, autoComplete = false, style,  children} : FormProps) 
 {
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -47,7 +48,7 @@ export function Form ({name, onSubmit, autoComplete = false,  children} : FormPr
     }
 // autoComplete={autoComplete?"on":"off"} autoSave="false"
     return (
-        <form name={name} onSubmit={onSubmitHandle} spellCheck role="main">
+        <form name={name} onSubmit={onSubmitHandle} spellCheck role="main" style={style}>
             <h2>{name}</h2>
             {children}
             <h4 className="Error">{error}</h4>

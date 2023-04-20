@@ -1,7 +1,7 @@
 form {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    min-width: 300px;
 }
 
 form > * {
@@ -14,21 +14,32 @@ form > *:not(.Select)
     margin-bottom: 5px;
 }
 
-form > input {
-    border-color: var(--blueLight);
-    color: var(--blueMid);
+form select {
+    user-select: none;
+    cursor: pointer;
+}
+
+form input, form select {
+    display: flex;
+    flex-grow: 1;
+    border-color: var(--defaultLight);
+    color: var(--defaultMid);
     padding: 5px 10px;
 }
 
-form > input::placeholder {
-    color: var(--blueLight);
+form input::placeholder, form select::placeholder {
+    color: var(--defaultLight);
     text-align: center;
+}
+
+form span {
+    display: flex;
 }
 
 form > .Error {
     display: flex;
     flex-grow: 1;
-    color:brown;
+    color:var(--redMid);
     justify-content: center;
     min-height: calc(1em + 5px);
     user-select: none;

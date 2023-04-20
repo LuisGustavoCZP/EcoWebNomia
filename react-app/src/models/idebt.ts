@@ -1,15 +1,16 @@
+import { IPayment } from "./ipayment";
+
 export interface IDebt {
-    "creation-date":Date,
-    "update-date":Date,
+    id:number,
+    "creation-date":string,
+    "update-date":string,
     category:string,
-    name:string,
-    owner:string,
+    description:string,
+    owner:number,
     creditor:string,
-    state:string,
-    total:number,
-    current:number,
-    cost:number,
-    parcel:number,
-    "last-payment":Date,
-    "next-payment":Date,
+    "installments-total":number,
+    "cost-total":number,
+    "cost-currency": string,
+    "payment-date":string,
+    payments: IPayment[]
 }

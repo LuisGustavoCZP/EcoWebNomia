@@ -11,15 +11,15 @@ export function useDebts ()
     async function loadDebts() 
     {
         if(!auth.token) return;
-
+        dispach(setDebts(undefined))
         const response = await getDebts(auth);
         dispach(setDebts(response))
     }
 
     useEffect(() => 
     {
-        loadDebts()
+        if(!debts || debts.length === 0) loadDebts()
     }, [auth.token])
 
-    return {debts};
+    return {list:debts, reload:loadDebts};
 }

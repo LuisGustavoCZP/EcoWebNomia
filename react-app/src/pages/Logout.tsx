@@ -1,15 +1,22 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
+import { eraseAuth } from "../services";
+import { Header } from '../components';
 
 export function Logout ()
 {
+
     useEffect(() => 
     {
-        //função logout
+        eraseAuth();
+        window.location.reload()
     });
 
     return (
-        <main>
-        <h2>Saindo...</h2>
-    </main>
+        <Fragment>
+            <Header />
+            <main>
+                <h2>Saindo...</h2>
+            </main>
+        </Fragment>
     );
 }

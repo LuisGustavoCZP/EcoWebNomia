@@ -6,14 +6,17 @@
     border-radius: 100%;
     justify-content: center;
     align-items: center;
-    background-color: var(--blueDark);
+    background-color: var(--defaultDark);
     overflow: hidden;
     user-select: none;
     pointer-events: none;
+    align-self: center;
+    justify-self: center;
+    margin: auto;
 }
 
 .Loading > p {
-    color: var(--blueGlow);
+    color: var(--defaultGlow);
     z-index: 100;
 }
 
@@ -33,22 +36,8 @@
 .LoadingSpinner > * {
     width: 100%;
     height: 100%;
-    background-color: var(--blueLight);
+    background-color: var(--defaultLight);
 }
-
-/* .Loading > .LoadingSpinner:nth-child(1) {
-    width: 100%;
-}
-
-.Loading > .LoadingSpinner:nth-child(2) {
-    width: 75%;
-    animation-name: spin2;
-}
-
-.Loading > .LoadingSpinner:nth-child(3) {
-    width: 50%;
-    animation-name: spin3;
-} */
 
 @keyframes spin {
     from {
@@ -58,21 +47,3 @@
         transform: rotate(-360deg);
     }
 }
-
-/* @keyframes spin2 {
-    from {
-        transform: rotate(180deg);
-    }
-    to {
-        transform: rotate(-180deg);
-    }
-}
-
-@keyframes spin3 {
-    from {
-        transform: rotate(270deg);
-    }
-    to {
-        transform: rotate(-90deg);
-    }
-} */
