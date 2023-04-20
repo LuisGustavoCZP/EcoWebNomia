@@ -1,10 +1,11 @@
-import { FunctionComponent, ReactNode } from "react";
-import { useAuth } from "../../hooks/use-auth";
+import { FunctionComponent, ReactNode, Fragment } from "react";
+import { useAuth, useDebts } from "../../hooks";
 import { IAuth } from "../../models";
+import { Header } from '../../components';
 
 type AuthNode = ({auth} : {auth:IAuth}) => ReactNode;
 
-interface GuardProps 
+interface GuardProps
 {
     children: FunctionComponent<any>,
 }
@@ -12,9 +13,14 @@ interface GuardProps
 export function Guard ({children} : GuardProps)
 {
     const { auth } = useAuth();
+    const debts = useDebts();
+
+    const loading = !auth || !debts.list;
+
     return (
-        <div>
-            {children(auth)}
-        </div>
+        <Fragment>
+            <Header navigation={!loading}/>
+            {children(auth, debts)}
+        </Fragment>
     );
 }

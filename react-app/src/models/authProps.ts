@@ -1,5 +1,7 @@
 import { IAuth } from './iauth';
+import { IDebts } from './idebts';
 
-export interface AuthProps {
+export interface UserProps {
     auth : IAuth
+    debts : IDebts
 }

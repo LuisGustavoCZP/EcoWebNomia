@@ -4,11 +4,11 @@ import { IBaseUser } from '../../models'
 import { RootState } from '../../store'
 
 interface IUsersState {
-  users: IBaseUser[]
+  users: IBaseUser[] | undefined
 }
 
 const initialState: IUsersState = {
-  users: []
+  users: undefined
 }
 
 export const usersSlice = createSlice({

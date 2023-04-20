@@ -1,0 +1,20 @@
+.Choices {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    user-select: none;
+}
+
+.Choices > span {
+    display: flex;
+    flex-grow: 1;
+    border: 2px solid var(--defaultLight);
+    padding: 5px 10px;
+    color: var(--defaultMid);
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.Choices > span:hover {
+    border-color: var(--defaultGlow);
+}

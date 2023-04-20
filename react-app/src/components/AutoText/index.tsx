@@ -78,6 +78,7 @@ export function AutoText ({wordList, name, required=false, placeholder=undefined
             {
                 if(setSelected !== undefined) setSelected(i);
                 setShow(false);
+                
                 if(i !== undefined) setValue(wordList[i]);
             }}/>
         )

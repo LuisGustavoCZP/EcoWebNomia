@@ -1,7 +1,7 @@
-import { useState, FocusEvent } from "react";
+import { useState, FocusEvent, Fragment } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { registerUser } from '../features';
-import { Form, Loading } from '../components';
+import { Form, Loading, Header } from '../components';
 import "../styles/form-handler.css";
 
 export function Register ()
@@ -44,16 +44,19 @@ export function Register ()
     // readOnly onFocus={unReadonly}
 
     return (
-        <main className="Register Center">
-            <div className="Panel">
-                <Form onSubmit={onSubmit} name="Cadastro">
-                    <input type="text" required name="username" placeholder='Usuario' autoComplete="username"/>
-                    <input type="password" required name="password" placeholder='Senha' autoComplete="new-password"/>
-                    <input type="text" required name="name" placeholder='Nome' autoComplete="name"/>
-                    <button>Registrar</button>
-                    <NavLink className="button" to="/login">Login</NavLink>
-                </Form>
-            </div>
-        </main>
+        <Fragment>
+            <Header />
+            <main className="Register Center">
+                <div className="Panel">
+                    <Form onSubmit={onSubmit} name="Cadastro">
+                        <input type="text" required name="username" placeholder='Usuario' autoComplete="username"/>
+                        <input type="password" required name="password" placeholder='Senha' autoComplete="new-password"/>
+                        <input type="text" required name="name" placeholder='Nome' autoComplete="name"/>
+                        <button>Registrar</button>
+                        <NavLink className="button" to="/login">Login</NavLink>
+                    </Form>
+                </div>
+            </main>
+        </Fragment>
     );
 }

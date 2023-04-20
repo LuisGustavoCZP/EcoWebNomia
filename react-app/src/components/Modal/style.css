@@ -7,15 +7,16 @@
     position: fixed;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--black-alpha);
 }
 
 .Modal > div {
     display: flex;
-    width: 350px;
-    height: 400px;
     position: relative;
     justify-content: center;
     align-items: start;
-    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.Modal h2 {
+    color: var(--white);
 }

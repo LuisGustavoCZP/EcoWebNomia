@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import "../../styles/modal.css";
+import "./style.css";
 
 export interface ModalSuperProps 
 {

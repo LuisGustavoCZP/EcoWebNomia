@@ -1,12 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { loginUser } from '../features';
-import { Form } from '../components';
-import { writeAuth } from "../services";
+import { Form, Header } from '../components';
+
 import "../styles/form-handler.css";
+import { Fragment } from "react";
 
 export function Login ()
 {
-    
     const navigation = useNavigate()
 
     async function onSubmit (data: {username: string, password: string})
@@ -20,29 +20,24 @@ export function Login ()
         
         const response = await loginUser(username, password);
         
-        if(response.result === "success")
-        {
-            //console.log("Login realizado com sucesso!", response.data);
-            writeAuth(response.data);
-            navigation("/");
-            return "";
-        }
-        else 
-        {
-            return response.error!;
-        }
+        if(!response) navigation("/");
+
+        return response;
     }
 
     return (
-        <main className="Login Center">
-            <div className="Panel">
-                <Form onSubmit={onSubmit} name="Login">
-                    <input type="text" required name="username" placeholder='Usuario'/>
-                    <input type="password" required name="password" placeholder='Senha' />
-                    <button>Entrar</button>
-                    <NavLink className="button" to="/register">Cadastro</NavLink>
-                </Form>
-            </div>
-        </main>
+        <Fragment>
+            <Header />
+            <main className="Login Center">
+                <div className="Panel">
+                    <Form onSubmit={onSubmit} name="Login">
+                        <input type="text" required name="username" placeholder='Usuario'/>
+                        <input type="password" required name="password" placeholder='Senha' />
+                        <button>Entrar</button>
+                        <NavLink className="button" to="/register">Cadastro</NavLink>
+                    </Form>
+                </div>
+            </main>
+        </Fragment>
     );
 }

@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import { IOptions } from "../../models";
-import "../../styles/select.css";
+import "./style.css";
 
 interface SelectProps 
 {
@@ -39,7 +39,7 @@ export function Select ({wordList, onSelect, selected = undefined} : SelectProps
     return (
         <Fragment>
             <div className="Select">
-                    {createList ()}
+                {createList ()}
             </div>
             <div className="SelectBack" onClick={() => onSelect()}></div>
         </Fragment>

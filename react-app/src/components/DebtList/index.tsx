@@ -1,14 +1,14 @@
-import { useDebts } from '../../hooks/use-debts';
-import "../../styles/debtlist.css"
+import { IDebt } from "../../models";
+import "./style.css"
+import { DebtItem } from "./DebtItem";
 
-export function DebtList () 
+export function DebtList ({debts=[]} : {debts:IDebt[]}) 
 {
-    const {debts} = useDebts();
-
     function createDebtList ()
     {
         if(!debts) return null;
-        const debtElements = debts.map((debt, i) => <li key={i}>{JSON.stringify(debt)}</li>);
+        const sortedDebts = debts;
+        const debtElements = sortedDebts.map((debt, i) => <li key={i}><DebtItem debt={debt} /></li>);
         return debtElements;
     }
 

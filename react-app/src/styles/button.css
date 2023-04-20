@@ -1,24 +1,25 @@
 .button, button {
     display: flex;
-    border: 2px solid var(--blueDark);
+    border: 2px solid var(--defaultDark);
     padding: 5px 10px;
     user-select: none;
     text-decoration: none;
     cursor: pointer;
     border-radius: 8px;
-    background-color: var(--blueLight);
-    color: var(--blueDark);
+    background-color: var(--defaultLight);
+    color: var(--defaultDark);
     justify-content: center;
     align-items: center;
+    -webkit-user-drag: none;
 }
 
 .button.light, button.light {
-    background-color: var(--blueDark);
-    color: var(--white);
-    border-color: var(--white);
+    background-color: var(--defaultDark);
+    color: var(--defaultLight);
+    border-color: var(--defaultLight);
 }
 
 .button:hover, button:hover {
-    color: var(--blueGlow);
-    border-color: var(--blueGlow);
+    color: var(--defaultGlow);
+    border-color: var(--defaultGlow);
 }
