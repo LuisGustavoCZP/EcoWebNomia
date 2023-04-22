@@ -7,10 +7,11 @@ interface FormProps extends PropsWithChildren
     name:string,
     onSubmit: (data : any) => Promise<string>,
     autoComplete?: boolean,
-    style?: CSSProperties
+    style?: CSSProperties,
+    tryText?: string 
 }
 
-export function Form ({name, onSubmit, autoComplete = false, style,  children} : FormProps) 
+export function Form ({name, onSubmit, autoComplete = false, style, tryText, children} : FormProps) 
 {
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -44,7 +45,7 @@ export function Form ({name, onSubmit, autoComplete = false, style,  children} :
 
     if(isLoading)
     {
-        return (<Loading size={200}/>);
+        return (<Loading text={tryText} size={200}/>);
     }
 // autoComplete={autoComplete?"on":"off"} autoSave="false"
     return (

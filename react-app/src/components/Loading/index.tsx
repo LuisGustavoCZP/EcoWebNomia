@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import "./style.css";
 import { LoadingSpinner } from "./LoadingSpinner";
 
-export function Loading ({size = 100} : {size? : number})
+export function Loading ({text = "Carregando", size = 100} : {text? : string, size? : number})
 {
     function create (total : number)
     {
@@ -21,8 +21,8 @@ export function Loading ({size = 100} : {size? : number})
 
     return (
         <div className="Loading" style={style}>
-            {create(3)}
-            <p>Loading...</p>
+            {create(2)}
+            <p>{text}<span><span>...</span></span></p>
         </div>
     );
 }

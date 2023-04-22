@@ -1,7 +1,7 @@
 import type { IAuth, IResponse } from "../../models";
 import { FormParser } from "../../utils";
 
-type APIPath = "users" | "debts" | "gains" | "shopping" | "login";
+type APIPath = "users" | "debts" | "payments" | "gains" | "shopping" | "login";
 
 export class API 
 {
@@ -14,6 +14,7 @@ export class API
     tables = [
         "users",
         "debts",
+        "payments",
         "gains",
         "shopping",
     ]

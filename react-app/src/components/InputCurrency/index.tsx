@@ -11,31 +11,31 @@ type ICurrency = [
 interface IInputCurrencyProps {
     name?: string,
     value?: string,
-    type?: "BRL" | "USD",
+    type?: "BRL" | "USD" | string,
     style?: CSSProperties,
+    required?: boolean
+    max?: number
     onChange?: (currency : ICurrency) => void
 }
 
-export function InputCurrency ({name, value="0,00", type="BRL", style, onChange} : IInputCurrencyProps)
+export function InputCurrency ({name, value="0,00", type="BRL", style, onChange, required=true, max} : IInputCurrencyProps)
 {
     const [currencyType, setCurrencyType] = useState<string>(type);
-    const [currencyValue, setCurrencyValue] = useState(value);
-
-    function onInput (e : FormEvent<HTMLInputElement>)
+    const [currencyValue, setCurrencyValue] = useState(convert(value));
+    
+    function convert (v : string)
     {
-        const input = e.target as HTMLInputElement;
-        let value = input.value;
-        const match = value.match(/\d*/gmi);
+        const match = v.match(/\d*/gmi);
         
-        value = match? match.join('') : "000";
+        v = match? match.join('') : "000";
 
-        if(value.length === 0)
-            value = `000`;
+        if(v.length === 0)
+            v = `000`;
         if(value.length === 1)
-            value = `00${value}`;
+            v = `00${v}`;
         
-        const decimals = value.slice(-2);
-        let integers = value.slice(0, -2);
+        const decimals = v.slice(-2);
+        let integers = v.slice(0, -2);
 
         if(integers) integers = integers.replace(/\b0+/g, '');
 
@@ -55,11 +55,22 @@ export function InputCurrency ({name, value="0,00", type="BRL", style, onChange}
             }
             integers = digits.join('');
         }
-        value = `${integers},${decimals}`;
+        return `${integers},${decimals}`;
+    }
 
-        onChanged(currencyType, value);
-        
-        setCurrencyValue(value);
+    function onInput (e : FormEvent<HTMLInputElement>)
+    {
+        const input = e.target as HTMLInputElement;
+        let v = convert(input.value);
+    
+        const vn = Number(v.replace(".", "").replace(",", "."));
+        if(max && vn > max)
+        {
+            v = convert(`${max}`);
+        }
+
+        onChanged(currencyType, v);
+        setCurrencyValue(v);
     }
 
     function onChanged(type: string, value: string)
@@ -77,7 +88,7 @@ export function InputCurrency ({name, value="0,00", type="BRL", style, onChange}
     return (
         <span className="InputCurrency" style={style}>
             <Choices style={choicesStyle} wordList={[["BRL", "R$"], ["USD", "U$"]]} initial={currencyType} onChange={(cType) => {setCurrencyType(cType); onChanged(cType, currencyValue);}} />
-            <input type="text" required pattern={`^${pattern}$`} onInput={onInput} value={`${currencyValue}`}/>
+            <input type="text" required={required} pattern={`^${pattern}$`} onInput={onInput} value={`${currencyValue}`}/>
             {name ? <input type="hidden" hidden name={name} value={currencyString}/> : null}
         </span>
     );

@@ -1,6 +1,6 @@
 .button, button {
     display: flex;
-    border: 2px solid var(--defaultDark);
+    border: 1px solid var(--defaultDark);
     padding: 5px 10px;
     user-select: none;
     text-decoration: none;
@@ -11,15 +11,28 @@
     justify-content: center;
     align-items: center;
     -webkit-user-drag: none;
+    box-shadow:1px 1px 2px var(--defaultMid);
 }
 
-.button.light, button.light {
+.button.dark, button.dark {
     background-color: var(--defaultDark);
     color: var(--defaultLight);
     border-color: var(--defaultLight);
 }
 
 .button:hover, button:hover {
-    color: var(--defaultGlow);
-    border-color: var(--defaultGlow);
+    color: var(--defaultMid);
+    border-color: var(--defaultMid);
+    box-shadow: 1px 1px 1px transparent;
+    transform: translate(1px, 1px);
+}
+
+.button:disabled, button:disabled {
+    cursor: default;
+    background-color: var(--defaultDark);
+    color: var(--defaultLight);
+    text-decoration: line-through;
+    border-color: var(--defaultLight);
+    box-shadow: 1px 1px 1px transparent;
+    transform: translate(1px, 1px);
 }

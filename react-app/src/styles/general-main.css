@@ -4,6 +4,7 @@ main {
     flex-grow: 1;
     height: 100%;
     padding: 20px 30px;
+    overflow: hidden;
 }
 
 main h2 {

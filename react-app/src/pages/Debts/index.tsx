@@ -1,5 +1,5 @@
 import { Fragment, ReactNode, useState } from 'react';
-import { DebtList, Loading, NewDebtModal, Header } from '../../components';
+import { DebtList, NewDebtModal, NewPaymentModal } from '../../components';
 import type {UserProps, IDebt} from "../../models";
 import "./style.css";
 
@@ -19,6 +19,13 @@ export function Debts ({auth, debts} : UserProps)
         )
     }
 
+    function openPaymentModal (id : number)
+    {
+        return (
+            setModal(<NewPaymentModal onClose={onClose} debt={debts.list[id]} onSucess={() => {onClose(); debts.reload();}}/>)
+        )
+    }
+
     const NewDebtButton = (<button className='button' key={-1} onClick={openDebtModal}>Adicionar Dívida</button>)
 
     function renderDebts (list: IDebt[])
@@ -29,7 +36,7 @@ export function Debts ({auth, debts} : UserProps)
                     <h2>Suas <b>dívidas</b>, {auth.name}</h2>
                     { debts && NewDebtButton }
                 </span>
-                <DebtList debts={list}/>
+                <DebtList debts={list} pay={openPaymentModal}/>
             </Fragment>
         )
     }
@@ -37,7 +44,7 @@ export function Debts ({auth, debts} : UserProps)
     return (
         <Fragment>
             <main className='Debts'>
-                { !debts.list? <Loading size={200}/> :  renderDebts(debts.list)}
+                {renderDebts(debts.list)}
             </main>
             {modal}
         </Fragment>

@@ -1,9 +1,9 @@
+import { Fragment, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { loginUser } from '../features';
 import { Form, Header } from '../components';
 
 import "../styles/form-handler.css";
-import { Fragment } from "react";
 
 export function Login ()
 {
@@ -17,9 +17,9 @@ export function Login ()
         {
             return "Algum campo não foi preenchido!";
         }
-        
+
         const response = await loginUser(username, password);
-        
+ 
         if(!response) navigation("/");
 
         return response;
@@ -30,7 +30,7 @@ export function Login ()
             <Header />
             <main className="Login Center">
                 <div className="Panel">
-                    <Form onSubmit={onSubmit} name="Login">
+                    <Form onSubmit={onSubmit} name="Login" tryText="Entrando">
                         <input type="text" required name="username" placeholder='Usuario'/>
                         <input type="password" required name="password" placeholder='Senha' />
                         <button>Entrar</button>

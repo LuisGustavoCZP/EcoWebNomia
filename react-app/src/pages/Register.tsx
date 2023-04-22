@@ -1,4 +1,4 @@
-import { useState, FocusEvent, Fragment } from "react";
+import { FocusEvent, Fragment } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { registerUser } from '../features';
 import { Form, Loading, Header } from '../components';
@@ -16,6 +16,7 @@ export function Register ()
         {
             return "Algum campo não foi preenchido!";
         }
+
         const response = await registerUser(username, password, name);
 
         if(response.result === "success")
@@ -48,7 +49,7 @@ export function Register ()
             <Header />
             <main className="Register Center">
                 <div className="Panel">
-                    <Form onSubmit={onSubmit} name="Cadastro">
+                    <Form onSubmit={onSubmit} name="Cadastro" tryText="Registrando">
                         <input type="text" required name="username" placeholder='Usuario' autoComplete="username"/>
                         <input type="password" required name="password" placeholder='Senha' autoComplete="new-password"/>
                         <input type="text" required name="name" placeholder='Nome' autoComplete="name"/>
