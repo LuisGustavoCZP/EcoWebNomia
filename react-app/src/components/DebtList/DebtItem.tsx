@@ -4,71 +4,97 @@ import {PaymentItem} from "./PaymentItem";
 
 export function DebtItem ({debt, pay} : {debt:IDebt, pay:(id : number) => void})
 {
-    const today = Date.now();
-    const paymentDate = new Date(debt["payment-date"]);
-    const overdue = paymentDate.getTime() < today;
+    const {category, description, creditor, installment, payment, cost, payments, status} = debt;
     
-    //const total = ;
-    const costCurrency = debt["cost-currency"];
-    const paymentPercent = debt["payment-percent"];
-    const paid = !debt["payment-rest"];
+    const paymentDate = new Date(debt.paymentDate);
+    const nextPaymentDate = new Date(debt.paymentDate).addMonths(installment.next-1);
+    nextPaymentDate.setHours(0, 0, 0, 0);
 
     function currencyString (valor : number, currency : string)
     {
         const cs = valor.toLocaleString("pt-br", { style: 'currency', currency});
         return (
-            <Fragment>
+            <span>
                 <span className="currency">{cs.slice(0, 2)}</span>
                 <span>{cs.slice(3)}</span>
-            </Fragment>
+            </span>
         );
     }
 
-    /* const restStyle : CSSProperties = {
-        color: `rgb(${Math.floor(255*(.7-(paymentPercent)))}, ${Math.floor(255*(paymentPercent*.7))}, 0)`
-    } */
+    function renderBody ()
+    {
+        if(status === "complete") return <span className="debt-body paid">Pago</span>
+
+        return (
+            <span className="debt-body">
+                {renderInfo ()}
+                {renderParcels ()}
+            </span>
+        )
+    }
+
+    function renderInfo ()
+    {
+        return (
+            <span className="info">
+                <span><span>{Math.max(installment.total - (installment.next-1), 0)}</span> x {currencyString(installment.cost, cost.currency)}</span>
+                <span className="op">=</span>
+                <span className="rest">{currencyString(payment.rest, cost.currency)}</span>
+            </span>
+        )
+    }
+
+    function renderParcels ()
+    {
+        return (
+            <span className="parcels">
+                <span> Proxima Parcela 
+                    <span>{installment.next} / {installment.total}</span>
+                </span>
+                <span>{currencyString(payment.next, cost.currency)}</span>
+                <button onClick={() => pay(debt.id)}>Pagar</button>
+            </span>
+        )
+    }
+
+    function renderState ()
+    {
+        <span className="debt-state">
+            <span className="total">{installment.total} x {currencyString(installment.cost, cost.currency)} = {currencyString(cost.total, cost.currency)}</span>
+            <span className="paid">-{currencyString(payment.total, cost.currency)}</span>
+        </span>
+    }
+
+    function renderPayments ()
+    {
+        if(payments.length === 0) return null;
+
+        return (
+            <ul className="debt-payments">
+                {payments.map(payment => <PaymentItem key={`${payment["id"]}`} payment={payment}/>)}
+            </ul>
+        );
+    }
+
+    function debtStatus ()
+    {
+        return ` ${status}`;
+    }
 
     return (
-        <div className={`DebtItem${overdue?" overdue":""}`}>
+        <div className={`DebtItem${debtStatus ()}`}>
             <span className="debt-header">
                 <span>
-                    <span className="date">{paymentDate.toLocaleDateString()}</span>
-                    <span className="category">{debt["category"]}</span>
+                    <span className="date">{nextPaymentDate.toLocaleDateString()}</span>
+                    <span className="category">{category}</span>
                 </span>
                 <span>
-                    <span className="description">{debt["description"]}</span>
-                    <span className="creditor">Para: {debt["creditor"]}</span>
-                    
+                    <span className="description">{description}</span>
+                    <span className="creditor">Para: {creditor}</span>
                 </span>
             </span>
-            <span className="debt-body">
-                <span>{debt["installments-total"]} x {currencyString(debt["installment-cost"], costCurrency)}</span>
-                <span>=</span>
-                <span className="total">{currencyString(debt["cost-total"], costCurrency)}</span> 
-            </span>
-            <span className="debt-state">
-                {!paid ?
-                <Fragment>
-                    <span className="paid">{currencyString(debt["payment-total"], costCurrency)}</span>
-                    <span className="rest">{currencyString(debt["payment-rest"], costCurrency)}</span>
-                </Fragment>
-                :
-                <span>Pago</span>
-                }
-            </span>
-            {!paid && <span className="debt-parcels">
-                <span> Proxima Parcela 
-                    <span>{debt["installment-next"]} / {debt["installments-total"]}</span>
-                </span>
-                <span>{currencyString(debt["payment-next"], costCurrency)}</span>
-                {<button onClick={() => pay(debt.id)} disabled={paid}>Pagar</button>}
-            </span>}
-            {debt.payments.length > 0 ? (
-                <ul className="debt-payments">
-                    {debt.payments.map(payment => <PaymentItem key={`${payment["id"]}`} payment={payment}/>)}
-                </ul>
-            ) : null
-            }
+            {renderBody()}
+            {renderPayments ()}
         </div>
     );
 }

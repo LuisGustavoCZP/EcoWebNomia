@@ -2,21 +2,28 @@ import { IPayment } from "./ipayment";
 
 export interface IDebt {
     id:number,
-    "creation-date":string,
-    "update-date":string,
+    creationDate:string,
+    updateDate:string,
+    paymentDate:string,
     category:string,
     description:string,
     owner:number,
     creditor:string,
-    "installments-total":number,
-    "installment-cost":number,
-    "installment-next":number,
-    "payment-total":number,
-    "payment-rest":number,
-    "payment-percent":number,
-    "payment-next":number,
-    "cost-total":number,
-    "cost-currency": string,
-    "payment-date":string,
+    installment: {
+        total:number,
+        next:number,
+        cost:number,
+    }
+    payment: {
+        total:number,
+        rest:number,
+        percent:number,
+        next:number,
+    }
+    cost: {
+        total:number,
+        currency: string,
+    }
+    status: string,
     payments: IPayment[]
 }

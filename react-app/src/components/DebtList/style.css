@@ -26,11 +26,39 @@
     min-width: 400px;
 }
 
+.DebtItem.ok {
+    --defaultLight: var(--blueLight);
+    --defaultMid: var(--blueMid);
+    --defaultDark: var(--blueDark);
+    --defaultGlow: var(--blueGlow);
+}
+
 .DebtItem.overdue {
     --defaultLight: var(--redLight);
     --defaultMid: var(--redMid);
     --defaultDark: var(--redDark);
     --defaultGlow: var(--redGlow);
+}
+
+.DebtItem.attention {
+    --defaultLight: var(--yellowLight);
+    --defaultMid: var(--yellowMid);
+    --defaultDark: var(--yellowDark);
+    --defaultGlow: var(--yellowGlow);
+}
+
+.DebtItem.warning {
+    --defaultLight: var(--orangeLight);
+    --defaultMid: var(--orangeMid);
+    --defaultDark: var(--orangeDark);
+    --defaultGlow: var(--orangeGlow);
+}
+
+.DebtItem.complete {
+    --defaultLight: var(--greenLight);
+    --defaultMid: var(--greenMid);
+    --defaultDark: var(--greenDark);
+    --defaultGlow: var(--greenGlow);
 }
 
 .DebtItem, .DebtItem div {
@@ -44,7 +72,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    flex-grow: 1;
+    flex-grow: 0;
 }
 
 .DebtItem > span {
@@ -68,18 +96,21 @@
 }
 
 .DebtItem > span > span:first-child {
-    flex-grow: .5;
     width: fit-content;
 }
 
 .DebtItem > .debt-header > span:first-child {
     border-radius: 0;
     border-bottom-right-radius: 15px;
+    width: 30%;
+    gap: 10px;
 }
 
 .DebtItem > .debt-header > span:last-child {
     border-radius: 0;
     border-bottom-left-radius: 15px;
+    flex-grow: 1;
+    gap: 10px;
 }
 
 .DebtItem > .debt-header > span > span:first-child {
@@ -94,7 +125,7 @@
     justify-content: space-between;
 }
 
-.DebtItem > .debt-body, .DebtItem > .debt-parcels, .DebtItem > .debt-payments, .DebtItem > .debt-paid, .DebtItem > .debt-state {
+.DebtItem > .debt-body, .DebtItem > .debt-payments, .DebtItem > .debt-paid, .DebtItem > .debt-state {
     justify-content: space-between;
     padding: 10px;
     background-color: rgba(255, 255, 255, .8);
@@ -134,8 +165,31 @@
     justify-content: flex-end;
 }
 
-.DebtItem > .debt-parcels > :first-child {
+.DebtItem > .debt-body .info > span {
+    width: fit-content;
+    flex-grow: 0;
+}
+
+.DebtItem > .debt-body .info > span:first-child {
+    gap: 10px;
+}
+
+.DebtItem > .debt-body .info {
+    /* width: 30%; */
+    gap: 1rem;
+    flex-grow: 0;
+}
+
+.DebtItem > .debt-body .parcels > :first-child {
     gap: .5rem;
+}
+
+.DebtItem > .debt-body .parcels {
+    gap: 1rem;
+}
+
+.DebtItem > .debt-body.paid {
+    justify-content: center;
 }
 
 .DebtItem > .debt-paid {
@@ -183,23 +237,23 @@
 }
 
 .DebtItem .date {
-    font-size: 1.4rem;
+    font-size: 1.4em;
     flex-grow: 0;
     color: var(--defaultLight);
 }
 
 .DebtItem .category {
-    font-size: 1.2rem;
+    font-size: 1.2em;
     flex-grow: 0;
     font-weight: 700;
 }
 
 .DebtItem .description {
-    font-size: .9rem;
+    font-size: .9em;
 }
 
 .DebtItem .creditor {
-    font-size: 1rem;
+    font-size: 1em;
     padding: 0 10px;
 }
 

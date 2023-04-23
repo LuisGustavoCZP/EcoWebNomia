@@ -22,7 +22,7 @@ export function Debts ({auth, debts} : UserProps)
     function openPaymentModal (id : number)
     {
         return (
-            setModal(<NewPaymentModal onClose={onClose} debt={debts.list[id]} onSucess={() => {onClose(); debts.reload();}}/>)
+            setModal(<NewPaymentModal onClose={onClose} debt={debts.list.find((debt) => debt.id === id)!} onSucess={() => {onClose(); debts.reload();}}/>)
         )
     }
 

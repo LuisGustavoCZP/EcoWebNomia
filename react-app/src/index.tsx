@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store as reduxStore } from './store'
 import { Provider } from 'react-redux'
+import "./utils/date-ops";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
