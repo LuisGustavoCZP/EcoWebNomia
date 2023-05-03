@@ -1,8 +1,30 @@
+.Debts {
+    background-color: var(--defaultLight);
+}
+
 .Debts > span {
     display: flex;
     justify-content:space-between;
+    padding-bottom: 10px;
+}
+
+.Debts > span > span {
+    display: flex;
+    flex-direction: row;
 }
 
 .Debts > span > h2 {
 
+}
+
+.Debts > span > h2 > .red {
+    color: var(--redGlow);
+}
+
+.Debts > .container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+    padding: 10px;
 }
