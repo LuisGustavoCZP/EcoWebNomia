@@ -11,6 +11,7 @@
 .Debts > span > span {
     display: flex;
     flex-direction: row;
+    gap: 5px;
 }
 
 .Debts > span > h2 {

@@ -81,12 +81,12 @@ export function Debts ({auth, debts} : UserProps)
     {
         const totalDebts = list.reduce((total, debt) => total += debt.installment.cost, 0);
 
-        const totalString = filter["creditor"] ? ` com ${filter["creditor"]} ` : " total "
+        const totalString = filter["creditor"] ? ` com ${filter["creditor"]} ` : ""
 
         return (
             <Fragment>
                 <span>
-                    <h2>Suas <b>dívidas</b>, {auth.name}. Sua divida {totalString} é: <span className='red'>{currencyString(totalDebts)}</span></h2>
+                    <h2>Suas <b>dívidas</b>, {auth.name}. Para este mês {totalString} é de <span className='red'>{currencyString(totalDebts)}</span></h2>
                     <span>
                         { renderUserFilter () }
                         { debts && NewDebtButton }
