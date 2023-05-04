@@ -1,0 +1,1 @@
+export type IFilter = { [key : string] : any };

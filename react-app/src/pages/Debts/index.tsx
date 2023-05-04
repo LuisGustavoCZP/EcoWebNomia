@@ -1,14 +1,13 @@
 import { FormEvent, Fragment, ReactNode, useState } from 'react';
 import { DebtList, NewDebtModal, NewPaymentModal } from '../../components';
-import type {UserProps, IDebt} from "../../models";
+import type {UserProps, IDebt, IFilter} from "../../models";
 import "./style.css";
-
-type IFilter = { [key : string] : any };
+import { useFilter } from '../../hooks';
 
 export function Debts ({auth, debts} : UserProps)
 {
     const [modal, setModal] = useState<null | ReactNode>(null);
-    const [filter, setFilter] = useState<IFilter>({});
+    const [filter, setFilter] = useFilter("debts");
 
     function onClose ()
     {
@@ -79,7 +78,7 @@ export function Debts ({auth, debts} : UserProps)
 
     function renderDebts (list: IDebt[])
     {
-        const totalDebts = list.reduce((total, debt) => total += debt.installment.cost, 0);
+        const totalDebts = list.filter(debt => !(debt.status === "ok" || debt.status === "complete")).reduce((total, debt) => total += debt.installment.cost, 0);
 
         const totalString = filter["creditor"] ? ` com ${filter["creditor"]} ` : ""
 
