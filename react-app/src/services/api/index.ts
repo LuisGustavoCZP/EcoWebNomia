@@ -1,4 +1,4 @@
-import type { IAuth, IResponse } from "../../models";
+import type { IAuth, IResponse } from "../../interfaces";
 import { FormParser } from "../../utils";
 
 type APIPath = "users" | "debts" | "payments" | "gains" | "shopping" | "login";

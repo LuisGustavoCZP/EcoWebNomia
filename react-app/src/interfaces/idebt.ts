@@ -2,9 +2,9 @@ import { IPayment } from "./ipayment";
 
 export interface IDebt {
     id:number,
-    creationDate:string,
-    updateDate:string,
-    paymentDate:string,
+    creationDate:Date,
+    updateDate:Date,
+    paymentDate:Date,
     category:string,
     description:string,
     owner:number,
@@ -24,6 +24,7 @@ export interface IDebt {
         total:number,
         currency: string,
     }
-    status: string,
     payments: IPayment[]
+    status: (date : Date | number) => string;
+    render: (pay:(id : number) => void, date : number | Date) => React.ReactNode
 }

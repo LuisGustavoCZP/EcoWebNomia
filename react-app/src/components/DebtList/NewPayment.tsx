@@ -3,7 +3,7 @@ import type {ModalSuperProps} from "../Modal";
 import { useState } from "react";
 import { InputCurrency } from "../InputCurrency";
 import { dateParse, dateTimeParse } from "../../utils";
-import { IDebt } from "../../models";
+import { IDebt } from "../../interfaces";
 import { postPayment } from "../../features";
 
 interface INewPaymentProps extends ModalSuperProps

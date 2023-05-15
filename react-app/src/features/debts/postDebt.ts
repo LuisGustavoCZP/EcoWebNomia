@@ -1,5 +1,5 @@
 import { api } from '../../services';
-import { IAuth } from "../../models";
+import { IAuth } from "../../interfaces";
 
 export async function postDebt (debt: any, auth: IAuth)
 {

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
-import { IAuth } from '../../models'
+import { IAuth } from '../../interfaces'
 
 const initialState: IAuth = {
     token: "",

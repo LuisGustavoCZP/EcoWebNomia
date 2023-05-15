@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
-import { IFilter } from '../../models'
+import { IFilter } from '../../interfaces'
 
 interface IFilterPayload 
 {
@@ -10,7 +10,7 @@ interface IFilterPayload
 }
 
 const initialState : IFilter = {
-    debts:{}
+  debts: {}
 }
 
 export const filtersSlice = createSlice({
@@ -18,7 +18,7 @@ export const filtersSlice = createSlice({
   initialState,
   reducers: {
     setFilter: (state, action: PayloadAction<IFilterPayload>) => {
-      state[action.type] = action.payload.filter;
+      state[action.payload.type] = action.payload.filter;
     }
   },
 })

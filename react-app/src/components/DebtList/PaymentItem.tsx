@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { IPayment } from "../../models";
+import { IPayment } from "../../interfaces";
 import { dateLocal } from "../../utils";
 
 export function PaymentItem ({payment} : {payment:IPayment})

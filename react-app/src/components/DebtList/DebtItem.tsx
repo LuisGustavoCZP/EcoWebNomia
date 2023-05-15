@@ -1,12 +1,13 @@
 import { CSSProperties, Fragment } from "react";
-import { IDebt } from "../../models";
+import { IDebt } from "../../interfaces";
 import {PaymentItem} from "./PaymentItem";
 
-export function DebtItem ({debt, pay} : {debt:IDebt, pay:(id : number) => void})
+
+export function DebtItem ({debt, status, pay} : {debt:IDebt, status : string, pay:(id : number) => void})
 {
-    const {category, description, creditor, installment, payment, cost, payments, status} = debt;
+    const {category, description, creditor, installment, payment, cost, payments} = debt;
     
-    const paymentDate = new Date(debt.paymentDate);
+    //const paymentDate = new Date(debt.paymentDate);
     const nextPaymentDate = new Date(debt.paymentDate).addMonths(installment.next-1);
     nextPaymentDate.setHours(0, 0, 0, 0);
 

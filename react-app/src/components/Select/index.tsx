@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { IOptions } from "../../models";
+import { IOptions } from "../../interfaces";
 import "./style.css";
 
 interface SelectProps 

@@ -5,7 +5,7 @@ import { CSSProperties, ReactNode, useState } from "react";
 import { InputCurrency } from "../InputCurrency";
 import { useAuth } from "../../hooks";
 import { dateParse } from "../../utils";
-import { IAuth, IDebt, IRequest } from "../../models";
+import { IAuth, IDebt, IRequest } from "../../interfaces";
 import { postPayment } from "../../features";
 
 interface ModalFormProps extends ModalSuperProps

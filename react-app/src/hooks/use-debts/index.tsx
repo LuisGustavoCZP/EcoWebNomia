@@ -1,24 +1,24 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { authState, debtsState, getDebts, setDebts } from '../../features';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { authState, getDebts } from '../../features';
+import { IDebt } from '../../interfaces';
 
 export function useDebts ()
 {
-    const dispach = useDispatch();
     const auth = useSelector(authState);
-    const {debts} = useSelector(debtsState);
+    const [debts, setDebts] = useState<IDebt[] | undefined>(undefined);
     
     async function loadDebts() 
     {
         if(!auth.token) return;
-        dispach(setDebts(undefined))
+        setDebts(undefined);
         const response = await getDebts(auth);
-        dispach(setDebts(response))
+        setDebts(response);
     }
 
     useEffect(() => 
     {
-        if(!debts || debts.length === 0) loadDebts()
+        if(!debts || debts.length === 0) loadDebts();
     }, [auth.token])
 
     return {list:debts, reload:loadDebts};

@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filtersActions, filtersState } from '../../features';
-import { IFilter } from '../../models';
 
 export function useFilter (type : string)
 {
@@ -10,9 +8,13 @@ export function useFilter (type : string)
 
     const filter = filters[type];
 
-    function setFilter (filter : IFilter)
+    function setFilter (filterType : string, value : string)
     {
-        dispach(filtersActions.setFilter({type, filter}))
+        const newFilter = Object.assign({}, filter);
+        if(value === "any" || !value) delete newFilter[filterType];
+        else newFilter[filterType] = value;
+            
+        dispach(filtersActions.setFilter({type, filter:newFilter}))
     }
 
     return [filter, setFilter];

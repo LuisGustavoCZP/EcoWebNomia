@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
-import { IBaseUser } from '../../models'
+import { IBaseUser } from '../../interfaces'
 import { RootState } from '../../store'
 
 interface IUsersState {

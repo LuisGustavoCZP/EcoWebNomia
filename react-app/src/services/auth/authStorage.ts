@@ -1,4 +1,4 @@
-import { IAuth } from "../../models";
+import { IAuth } from "../../interfaces";
 
 export function readAuth ()
 {

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers, setUsers, authState, usersState } from '../../features';
-import { IAuth } from '../../models';
+import { IAuth } from '../../interfaces';
 
 export function useUsers ()
 {
