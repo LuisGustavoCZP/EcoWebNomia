@@ -12,8 +12,7 @@ interface AutoTextProps
 
 export function AutoText ({wordList, name, required=false, placeholder=undefined} : AutoTextProps)
 {
-    const allWords : IOptions = wordList.map((w, i) => [w, i]);
-
+    const [allWords, setAllWords] = useState<[string, number][]>([]);
     const [words, setWords] = useState(allWords);
     const [select, setSelected] = useState<number | undefined>();
     const [showing, setShow] = useState(false);
@@ -32,7 +31,15 @@ export function AutoText ({wordList, name, required=false, placeholder=undefined
         
         showOptions ();
 
-        if (e.key === "Enter") 
+        if (e.key === "Tab") 
+        {
+            if(showing)
+            {
+                setShow(false);
+            }
+        } 
+        // User pressed the up arrow, decrement the index
+        else if (e.key === "Enter") 
         {
             e.preventDefault();
             e.stopPropagation();
@@ -81,18 +88,24 @@ export function AutoText ({wordList, name, required=false, placeholder=undefined
                 
                 if(i !== undefined) setValue(wordList[i]);
             }}/>
-        )
+        );
     }
+
+    useEffect(() => 
+    {
+        const awords = wordList.map((w, i) => [w, i]) as [string, number][];
+        setAllWords(awords);
+    }, [allWords]);
 
     useEffect(() => 
     {
         const list = allWords.filter(([word]) => word.includes(value));
         setWords(list);
-    }, [value])
+    }, [value, allWords]);
     
     return (
         <Fragment>
-            <input type="text" name={name} placeholder={placeholder} required={required} onKeyDown={(e) => onKeyDown(e as any)} onFocus={() => showOptions ()} onInput={onInput} value={value} />
+            <input type="text" name={name} placeholder={placeholder} required={required} onKeyDown={(e) => onKeyDown(e as any)} onFocus={() => showOptions ()} onClick={() => showOptions ()} onInput={onInput} value={value} />
             {renderList ()}
         </Fragment>
     );

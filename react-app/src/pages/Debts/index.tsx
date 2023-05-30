@@ -7,6 +7,7 @@ import debtsStatus from "../../assets/debt-status.json";
 import { DebtsContext } from '../../context';
 
 import "./style.css";
+import { useCreditors } from '../../hooks/use-creditors';
 
 const now = new Date();
 now.setDate(28);
@@ -18,6 +19,7 @@ export function Debts ({auth} : UserProps)
     const [filter, setFilter] = useFilter("debts");
     const [status, setStatus] = useState("any");
     const [date, setDate] = useState(now);
+    const [creditors] = useCreditors();
 
     function onClose ()
     {
@@ -27,7 +29,7 @@ export function Debts ({auth} : UserProps)
     function openDebtModal ()
     {
         return (
-            setModal(<NewDebtModal onClose={onClose} onSucess={() => {onClose(); debts.reload();}}/>)
+            setModal(<NewDebtModal creditors={creditors} onClose={onClose} onSucess={() => {onClose(); debts.reload();}}/>)
         )
     }
 
