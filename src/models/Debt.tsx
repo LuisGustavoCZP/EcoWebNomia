@@ -91,7 +91,7 @@ export class Debt implements IDebt
         }
     }
 
-    status (date : number | Date)
+    status (date : number | Date, showMontly = false)
     {
         const today = date ? new Date(date) : new Date();
         today.setHours(0, 0, 0, 0);
@@ -107,18 +107,36 @@ export class Debt implements IDebt
             nextPayday.addMonths(1);
         }
 
-        const nextPaymentDate = new Date(this.paymentDate).addMonths(this.installment.next-1);
+        let nextPaymentDate = new Date(this.paymentDate).addMonths(this.installment.next-1);
         nextPaymentDate.setHours(0, 0, 0, 0);
 
-        if(!this.payment.rest)
+        let {rest} = this.payment;
+
+        if(showMontly)
+        {
+            const exccedMonths = today.getMonth() - nextPaymentDate.getMonth();
+            if(exccedMonths > 0)
+            {
+                nextPaymentDate.addMonths(exccedMonths);
+                if(rest > 0)
+                {
+                    rest -= exccedMonths * this.installment.cost;
+                    rest = Math.max(rest, 0);
+                }
+            }
+        }
+
+        const overdueTime = today.getTime() - nextPaymentDate.getTime();
+
+        if(!rest)
         {
             return COMPLETE;
         }
-        else if(nextPaymentDate.getTime() < today.getTime())
+        else if(overdueTime > 0)
         {
             return OVERDUE;
         }
-        else if(nextPaymentDate.getTime() === today.getTime())
+        else if(overdueTime === 0)
         {
             return WARNING;
         }

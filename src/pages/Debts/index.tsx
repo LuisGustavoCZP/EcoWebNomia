@@ -18,7 +18,7 @@ export function Debts ({auth} : UserProps)
     const [filter, setFilter] = useFilter("debts");
     const [status, setStatus] = useState("any");
     const [date, setDate] = useState(now);
-    const [creditors] = useCreditors();
+    const [possibleCreditors, creditors] = useCreditors();
 
     function onClose ()
     {
@@ -28,7 +28,7 @@ export function Debts ({auth} : UserProps)
     function openDebtModal ()
     {
         return (
-            setModal(<NewDebtModal creditors={creditors} onClose={onClose} onSucess={() => {onClose(); debts.reload();}}/>)
+            setModal(<NewDebtModal creditors={possibleCreditors} onClose={onClose} onSucess={() => {onClose(); debts.reload();}}/>)
         )
     }
 
@@ -111,20 +111,14 @@ export function Debts ({auth} : UserProps)
             setFilter("creditor", select.value);
         }
 
-        const creditorSet = new Set();
-        const creditors = debts.list.filter(debt => 
-        {
-            if(creditorSet.has(debt.creditor)) return false;
-            creditorSet.add(debt.creditor);
-            return true;
-        }).map((debt, i) => <option key={i} value={debt.creditor}>{debt.creditor}</option>)
+        const creditorsList = creditors.map((creditor, i) => <option key={i} value={creditor}>{creditor}</option>)
 
-        creditors.unshift(<option key={-1} value="any" defaultChecked>Todos</option>)
+        creditorsList.unshift(<option key={-1} value="any" defaultChecked>Todos</option>)
 
         // value={filter["creditor"]}
         return (
             <select onChange={filterHandler}>
-                {creditors}
+                {creditorsList}
             </select>
         );
     }
@@ -162,13 +156,13 @@ export function Debts ({auth} : UserProps)
         {
             list = list.filter((debt: IDebt) => 
             {
-                const status = debt.status(date);
+                const status = debt.status(date, true);
                 return status !== "ok" && status !== "complete";
             });
         }
         else
         {
-            list = list.filter((debt: IDebt) => debt.status(date) === status);
+            list = list.filter((debt: IDebt) => debt.status(date, true) === status);
         }
 
         if(entries.length === 0) 

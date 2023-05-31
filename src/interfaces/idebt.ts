@@ -25,6 +25,6 @@ export interface IDebt {
         currency: string,
     }
     payments: IPayment[]
-    status: (date : Date | number) => string;
+    status: (date : Date | number, showMontly: boolean) => string;
     render: (pay:(id : number) => void, date : number | Date) => React.ReactNode
 }

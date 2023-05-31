@@ -33,5 +33,5 @@ export function useCreditors ()
         setPossibleCreditors(Array(...userCreditors, ...creditors));
     }, [userCreditors, creditors]);
 
-    return [possibleCreditors];
+    return [possibleCreditors, creditors];
 }
