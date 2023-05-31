@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { IOptions } from "../../interfaces";
 import "./style.css";
 

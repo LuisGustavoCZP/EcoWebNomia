@@ -1,12 +1,9 @@
-import {Modal} from "../Modal";
-import type {ModalSuperProps} from "../Modal";
-import {Form} from "../Form";
 import { CSSProperties, ReactNode, useState } from "react";
-import { InputCurrency } from "../InputCurrency";
 import { useAuth } from "../../hooks";
-import { dateParse } from "../../utils";
-import { IAuth, IDebt, IRequest } from "../../interfaces";
-import { postPayment } from "../../features";
+import { IRequest } from "../../interfaces";
+import { Form } from "../Form";
+import type { ModalSuperProps } from "../Modal";
+import { Modal } from "../Modal";
 
 interface ModalFormProps extends ModalSuperProps
 {

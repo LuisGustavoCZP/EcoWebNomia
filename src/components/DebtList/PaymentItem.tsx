@@ -4,8 +4,6 @@ import { dateLocal } from "../../utils";
 
 export function PaymentItem ({payment} : {payment:IPayment})
 {
-    const today = Date.now();
-
     function currencyString (valor : number, currency : string)
     {
         const cs = valor.toLocaleString("pt-br", { style: 'currency', currency});

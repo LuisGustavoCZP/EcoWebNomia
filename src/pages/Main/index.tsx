@@ -1,14 +1,13 @@
-import { Fragment, useEffect, useState, useContext, FormEvent } from "react";
-import { IDebt, UserProps } from "../../interfaces";
-import { DebtsContext } from '../../context';
-import { dateLocal } from "../../utils";
-import { useFilter } from '../../hooks';
-import { LineGraphic, debtsPaymentByMonth, debtsTotalByMonth } from "../../features/graphics";
+import { FormEvent, Fragment, useContext, useEffect, useState } from "react";
 import mountNames from "../../assets/month-names.json";
+import { DebtsContext } from '../../context';
+import { LineGraphic, debtsPaymentByMonth, debtsTotalByMonth } from "../../features/graphics";
+import { useFilter } from '../../hooks';
+import { IDebt, UserProps } from "../../interfaces";
 
 const now = new Date();
 now.setDate(28);
-now.setMonth(0);
+now.setMonth(0);/* 
 
 function extractDebtsData (debts : IDebt[])
 {
@@ -67,14 +66,15 @@ function extractDebtsData (debts : IDebt[])
     }, 0)));
 
     return [labels, dataTotalDebts, dataAmortizedDebts, dataMontlyDebts]
-}
+} 
+*/
 
 export function Main ({auth} : UserProps)
 {
     const debts = useContext(DebtsContext);
     const [filter, setFilter] = useFilter("main");
-    const [status, setStatus] = useState("any");
-    const [date, setDate] = useState(now);
+    /* const [status, setStatus] = useState("any");
+    const [date, setDate] = useState(now); */
     const [data, setData] = useState<any>({labels:[], datasets:[]});
 
     function debtsData (debts : IDebt[])

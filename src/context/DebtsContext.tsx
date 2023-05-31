@@ -1,7 +1,7 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
-import { IDebt } from "../interfaces";
-import { useDebts } from "../hooks";
+import { createContext, ReactNode } from "react";
 import { Loading } from '../components';
+import { useDebts } from "../hooks";
+import { IDebt } from "../interfaces";
 
 interface DebtsContextProps
 {

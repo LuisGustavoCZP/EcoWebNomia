@@ -1,11 +1,13 @@
 header {
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
     justify-content: space-between; 
     align-items: center;
     padding: 5px 20px;
     background-color: var(--defaultDark);
     color:var(--defaultLight);
+    user-select: none;
 }
 
 header > nav {

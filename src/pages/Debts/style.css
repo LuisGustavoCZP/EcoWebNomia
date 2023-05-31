@@ -1,17 +1,30 @@
 .Debts {
+    display: flex;
+    align-items: center;
+    /* height: 100%;
+    overflow: auto; */
     background-color: var(--defaultLight);
+}
+
+.Debts > span, .Debts > div {
+    max-width: 1200px;
 }
 
 .Debts > span {
     display: flex;
     justify-content:space-between;
+    flex-wrap: wrap;
     padding-bottom: 10px;
+    gap: 15px;
+    user-select: none;
 }
 
 .Debts > span > span {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 5px;
+    user-select: auto;
 }
 
 .Debts > span > h2 {
@@ -27,5 +40,6 @@
     flex-direction: column;
     flex-grow: 1;
     overflow: hidden;
-    padding: 10px;
+    width: 100%;
+    /* padding: 10px; */
 }

@@ -1,10 +1,4 @@
-import { CSSProperties, FormEvent, useState } from "react";
-import { InputCurrency } from "../InputCurrency";
-
-type IInstallment = [
-    total : string, 
-    value : string
-]
+import { CSSProperties, useState } from "react";
 
 interface IInputInstallmentProps {
     nameInstallment: string,

@@ -1,6 +1,6 @@
-import { CSSProperties, FormEvent, Fragment, useEffect, useState } from "react";
-import { Select } from "../Select";
+import { CSSProperties, useEffect, useState } from "react";
 import { IOptions } from "../../interfaces";
+import { Select } from "../Select";
 import "./style.css";
 
 interface ChoicesProps

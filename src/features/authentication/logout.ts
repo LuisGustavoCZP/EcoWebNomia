@@ -1,4 +1,4 @@
-import { api, eraseAuth } from '../../services';
+import { eraseAuth } from '../../services';
 
 export async function logoutUser ()
 {

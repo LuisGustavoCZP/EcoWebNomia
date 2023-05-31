@@ -9,11 +9,6 @@ function ceil2 (num : number)
     return Math.ceil(num*100)/100;
 }
 
-function floor2 (num : number)
-{
-    return Math.floor(num*100)/100;
-}
-
 export class Debt implements IDebt
 {
     id:number;

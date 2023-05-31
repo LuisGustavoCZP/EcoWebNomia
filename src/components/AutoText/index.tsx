@@ -1,6 +1,5 @@
 import { FormEvent, Fragment, useEffect, useState } from "react";
 import { Select } from "../Select";
-import { IOptions } from "../../interfaces";
 
 interface AutoTextProps
 {

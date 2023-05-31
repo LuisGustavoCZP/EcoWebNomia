@@ -1,6 +1,5 @@
-import { CSSProperties, Fragment } from "react";
 import { IDebt } from "../../interfaces";
-import {PaymentItem} from "./PaymentItem";
+import { PaymentItem } from "./PaymentItem";
 
 
 export function DebtItem ({debt, status, pay} : {debt:IDebt, status : string, pay:(id : number) => void})

@@ -1,7 +1,7 @@
-import { FocusEvent, Fragment } from "react";
+import { Fragment } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Form, Header } from '../components';
 import { registerUser } from '../features';
-import { Form, Loading, Header } from '../components';
 import "../styles/form-handler.css";
 
 export function Register ()
@@ -30,19 +30,6 @@ export function Register ()
             return response.error!;
         }
     }
-
-    function unReadonly(e : FocusEvent<HTMLInputElement, Element>) 
-    {
-        if (e.target.hasAttribute('readonly')) 
-        {
-            e.target.removeAttribute('readonly');
-            // fix for mobile safari to show virtual keyboard
-            e.target.blur();    
-            e.target.focus(); 
-        }
-    }
-    
-    // readOnly onFocus={unReadonly}
 
     return (
         <Fragment>

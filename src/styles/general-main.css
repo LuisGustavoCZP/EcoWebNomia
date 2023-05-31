@@ -10,3 +10,9 @@ main {
 main h2 {
     margin: 0;
 }
+
+@media screen and (max-width:560px) {
+    main {
+        padding: 5px 10px;
+    }
+}

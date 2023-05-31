@@ -1,9 +1,6 @@
-import { FunctionComponent, ReactNode, Fragment } from "react";
-import { useAuth, useDebts } from "../../hooks";
-import { IAuth } from "../../interfaces";
+import { Fragment, FunctionComponent } from "react";
 import { Header, Loading } from '../../components';
-
-type AuthNode = ({auth} : {auth:IAuth}) => ReactNode;
+import { useAuth } from "../../hooks";
 
 interface GuardProps
 {

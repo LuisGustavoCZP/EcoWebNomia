@@ -1,15 +1,11 @@
-import {Modal} from "../Modal";
-import type {ModalSuperProps} from "../Modal";
-import {Form} from "../Form";
-import { CSSProperties, Fragment, useEffect, useState } from "react";
-import { AutoText } from "../AutoText";
-import categories from "../../assets/category-debts.json"
-import { Choices } from "../Choices";
-import { InputCurrency } from "../InputCurrency";
-import { useDebts, useUsers } from "../../hooks";
-import { InputInstallment } from "../InputInstallment";
+import { useState } from "react";
+import categories from "../../assets/category-debts.json";
 import { postDebt } from "../../features";
 import { dateParse } from "../../utils";
+import { AutoText } from "../AutoText";
+import { InputCurrency } from "../InputCurrency";
+import { InputInstallment } from "../InputInstallment";
+import type { ModalSuperProps } from "../Modal";
 import { ModalForm } from "../ModalForm";
 
 interface INewDebtModalProps extends ModalSuperProps

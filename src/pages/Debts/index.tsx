@@ -1,13 +1,12 @@
-import React, { FormEvent, Fragment, ReactNode, useContext, useState } from 'react';
-import { DebtList, NewDebtModal, NewPaymentModal } from '../../components';
-import type {UserProps, IDebt, IFilter} from "../../interfaces";
-import { Debt } from "../../models";
-import { useFilter } from '../../hooks';
+import { FormEvent, Fragment, ReactNode, useContext, useState } from 'react';
 import debtsStatus from "../../assets/debt-status.json";
+import { DebtList, NewDebtModal, NewPaymentModal } from '../../components';
 import { DebtsContext } from '../../context';
+import { useFilter } from '../../hooks';
+import type { IDebt, UserProps } from "../../interfaces";
 
-import "./style.css";
 import { useCreditors } from '../../hooks/use-creditors';
+import "./style.css";
 
 const now = new Date();
 now.setDate(28);

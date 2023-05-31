@@ -1,7 +1,7 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { loginUser } from '../features';
 import { Form, Header } from '../components';
+import { loginUser } from '../features';
 
 import "../styles/form-handler.css";
 

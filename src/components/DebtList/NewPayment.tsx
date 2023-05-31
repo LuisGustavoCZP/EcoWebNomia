@@ -1,10 +1,10 @@
-import {ModalForm} from "../ModalForm";
-import type {ModalSuperProps} from "../Modal";
 import { useState } from "react";
-import { InputCurrency } from "../InputCurrency";
-import { dateParse, dateTimeParse } from "../../utils";
-import { IDebt } from "../../interfaces";
 import { postPayment } from "../../features";
+import { IDebt } from "../../interfaces";
+import { dateTimeParse } from "../../utils";
+import { InputCurrency } from "../InputCurrency";
+import type { ModalSuperProps } from "../Modal";
+import { ModalForm } from "../ModalForm";
 
 interface INewPaymentProps extends ModalSuperProps
 {
