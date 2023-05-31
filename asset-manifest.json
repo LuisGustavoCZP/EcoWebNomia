@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/EcoWebNomia/static/css/main.0487203f.css",
+    "main.css": "/EcoWebNomia/static/css/main.6a2b18d4.css",
     "main.js": "/EcoWebNomia/static/js/main.71f0478a.js",
     "static/js/787.b701888c.chunk.js": "/EcoWebNomia/static/js/787.b701888c.chunk.js",
     "index.html": "/EcoWebNomia/index.html",
     "static/media/loading2.svg": "/EcoWebNomia/static/media/loading2.95d926baab132202407142e4b77e7a29.svg",
-    "main.0487203f.css.map": "/EcoWebNomia/static/css/main.0487203f.css.map",
+    "main.6a2b18d4.css.map": "/EcoWebNomia/static/css/main.6a2b18d4.css.map",
     "main.71f0478a.js.map": "/EcoWebNomia/static/js/main.71f0478a.js.map",
     "787.b701888c.chunk.js.map": "/EcoWebNomia/static/js/787.b701888c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0487203f.css",
+    "static/css/main.6a2b18d4.css",
     "static/js/main.71f0478a.js"
   ]
 }
