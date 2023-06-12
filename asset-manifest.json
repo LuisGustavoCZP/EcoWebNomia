@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/EcoWebNomia/static/css/main.6a2b18d4.css",
-    "main.js": "/EcoWebNomia/static/js/main.2c08f58d.js",
-    "static/js/787.b701888c.chunk.js": "/EcoWebNomia/static/js/787.b701888c.chunk.js",
-    "index.html": "/EcoWebNomia/index.html",
-    "static/media/loading2.svg": "/EcoWebNomia/static/media/loading2.95d926baab132202407142e4b77e7a29.svg",
-    "main.6a2b18d4.css.map": "/EcoWebNomia/static/css/main.6a2b18d4.css.map",
-    "main.2c08f58d.js.map": "/EcoWebNomia/static/js/main.2c08f58d.js.map",
-    "787.b701888c.chunk.js.map": "/EcoWebNomia/static/js/787.b701888c.chunk.js.map"
+    "main.css": "/static/css/main.6a2b18d4.css",
+    "main.js": "/static/js/main.3050b868.js",
+    "static/js/787.b701888c.chunk.js": "/static/js/787.b701888c.chunk.js",
+    "index.html": "/index.html",
+    "static/media/loading2.svg": "/static/media/loading2.95d926baab132202407142e4b77e7a29.svg",
+    "main.6a2b18d4.css.map": "/static/css/main.6a2b18d4.css.map",
+    "main.3050b868.js.map": "/static/js/main.3050b868.js.map",
+    "787.b701888c.chunk.js.map": "/static/js/787.b701888c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6a2b18d4.css",
-    "static/js/main.2c08f58d.js"
+    "static/js/main.3050b868.js"
   ]
 }
