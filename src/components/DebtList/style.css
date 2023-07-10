@@ -274,6 +274,14 @@
     padding: 0 10px;
 }
 
+.DebtItem .clickable {
+    cursor: pointer;   
+}
+
+.DebtItem .clickable:hover {
+    filter: grayscale(50%);   
+}
+
 /* @media (max-width:1024px) 
 {
     .DebtList {

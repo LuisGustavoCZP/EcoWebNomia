@@ -30,8 +30,15 @@ export function debtsPaymentByMonth (debts : IDebt[], dates : string[])
     {
         const [year, month] = date.trim().split("-").map(s => Number(s));
         const dateType = new Date(year, month, 29);
+        const list = debts;
+        
+        /*.filter((debt: IDebt) => 
+        {
+            const status = debt.status(new Date(dateType).addMonths(1), true);
+            return status !== "ok";
+        }); */
 
-        return debts.reduce((t, debt) => 
+        return list.reduce((t, debt) => 
         {
             if(debt.paymentDate > dateType) return t;
 
@@ -39,7 +46,8 @@ export function debtsPaymentByMonth (debts : IDebt[], dates : string[])
             const y = d.getFullYear() - 1970;
             let mt = d.getMonth() + 1 + (y * 12);
 
-            if(mt > debt.installment.total) return t;
+            if(mt > (debt.installment.total)) return t;
+            console.log(mt);
 
             t += debt.installment.cost;
 

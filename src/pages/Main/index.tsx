@@ -7,67 +7,7 @@ import { IDebt, UserProps } from "../../interfaces";
 
 const now = new Date();
 now.setDate(28);
-now.setMonth(0);/* 
-
-function extractDebtsData (debts : IDebt[])
-{
-    let today = new Date(Date.now()).addDays(10);
-    if(today.getDate() > 2)
-    {
-        today = new Date(today.toISOString().replace(/\d{2}T\d{2}:\d{2}:\d{2}.\d{3}/, "02T00:00:00.000"));
-        today.addMonths(1);
-    }
-    else today = new Date(today.toISOString().replace(/\d{2}T\d{2}:\d{2}:\d{2}.\d{3}/, "02T00:00:00.000"));
-
-    console.log(today.toISOString());
-    const debtsOrdered = Array.from(debts);
-    debtsOrdered.sort((a, b) => a.paymentDate > b.paymentDate? -1 : 1)
-    
-    const debtsByDate = debtsOrdered.reduce((l : [Date, IDebt[]][], debt) => 
-    {
-        const date = debt.paymentDate;
-        
-        const group = l.filter(([d]) => date <= d);
-
-        if(!group.some(([d]) => d === date))
-        {
-            const g : [Date, IDebt[]] = [date, []];
-            l.push(g);
-            group.push(g);
-        }
-
-        group.forEach(g => 
-        {
-            g[1].push(debt);
-        });
-        return l;
-    }, []);
-
-    debtsByDate.sort(([a], [b]) => a > b ? 1 : -1)
-    console.log(debtsByDate);
-
-    const debtsByDateJSON = debtsByDate.map(([date, list]) => [date.toLocaleDateString(), list]);
-    const debtsByDateObj : {[key: string] : IDebt[]} = Object.fromEntries(debtsByDateJSON);
-    const labels = Object.keys(debtsByDateObj);
-    const values = Object.values(debtsByDateObj);
-    const dataTotalDebts = values.map((debts => debts.reduce((t, debt) => t += debt.payment.rest, 0)));
-    const dataAmortizedDebts = values.map((debts => debts.reduce((t, debt) => t += debt.payment.total, 0)));
-    const dataMontlyDebts = values.map(((debts, mt) => debts.reduce((t, debt) => 
-    {
-        const m = mt - debt.paymentDate.getMonth();
-        const p =  m;
-        if(p < 0) return t;
-        
-        //const d = new Date(debt.paymentDate).addMonths(p);
-        t += debt.installment.cost;
-
-        console.log(`Pay ${debt.description} ${p}`, t);
-        return t;
-    }, 0)));
-
-    return [labels, dataTotalDebts, dataAmortizedDebts, dataMontlyDebts]
-} 
-*/
+now.setMonth(0);
 
 export function Main ({auth} : UserProps)
 {
@@ -103,20 +43,6 @@ export function Main ({auth} : UserProps)
     {
         if(!filter) return list;
         const entries = Object.entries(filter);
-        /* const statusAll = status === "any";
-
-        if(statusAll)
-        {
-            list = list.filter((debt: IDebt) => 
-            {
-                const status = debt.status(date);
-                return status !== "ok" && status !== "complete";
-            });
-        }
-        else
-        {
-            list = list.filter((debt: IDebt) => debt.status(date) === status);
-        } */
 
         if(entries.length === 0) 
         {

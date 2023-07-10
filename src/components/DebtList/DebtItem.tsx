@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { IDebt } from "../../interfaces";
 import { PaymentItem } from "./PaymentItem";
 
@@ -5,8 +6,9 @@ import { PaymentItem } from "./PaymentItem";
 export function DebtItem ({debt, status, pay} : {debt:IDebt, status : string, pay:(id : number) => void})
 {
     const {category, description, creditor, installment, payment, cost, payments} = debt;
-    
-    //const paymentDate = new Date(debt.paymentDate);
+    const [closed, setClosed] = useState(true);
+
+    const empty = payments.length === 0;
     const nextPaymentDate = new Date(debt.paymentDate).addMonths(installment.next-1);
     nextPaymentDate.setHours(0, 0, 0, 0);
 
@@ -67,7 +69,7 @@ export function DebtItem ({debt, status, pay} : {debt:IDebt, status : string, pa
 
     function renderPayments ()
     {
-        if(payments.length === 0) return null;
+        if(empty || closed) return null;
 
         return (
             <ul className="debt-payments">
@@ -81,9 +83,15 @@ export function DebtItem ({debt, status, pay} : {debt:IDebt, status : string, pa
         return ` ${status}`;
     }
 
+    function closeExtra ()
+    {
+        console.log("test", closed);
+        setClosed(!closed);
+    }
+
     return (
         <div className={`DebtItem${debtStatus ()}`}>
-            <span className="debt-header">
+            <span className={`debt-header${empty?"":" clickable"}`} onClick={closeExtra}>
                 <span>
                     <span className="date">{nextPaymentDate.toLocaleDateString()}</span>
                     <span className="category">{category}</span>
