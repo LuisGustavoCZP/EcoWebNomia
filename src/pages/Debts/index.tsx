@@ -2,10 +2,10 @@ import { FormEvent, Fragment, ReactNode, useContext, useState } from 'react';
 import debtsStatus from "../../assets/debt-status.json";
 import { DebtList, NewDebtModal, NewPaymentModal } from '../../components';
 import { DebtsContext } from '../../context';
-import { useFilter } from '../../hooks';
+import { useFilter, useCreditors } from '../../hooks';
 import type { IDebt, UserProps } from "../../interfaces";
+import { downloadBlob, collectionToCSV } from '../../utils';
 
-import { useCreditors } from '../../hooks/use-creditors';
 import "./style.css";
 
 const now = new Date();
@@ -32,6 +32,33 @@ export function Debts ({auth} : UserProps)
         )
     }
 
+    function printDebtModal ()
+    {
+        const collection = list.map(debt => 
+        {           
+            const debtP = {
+                id: debt.id,
+                data: debt.paymentDate.toLocaleDateString(),
+                nome: debt.description,
+                parcela: debt.installment.next,
+                total: debt.installment.total,
+                valor: debt.installment.cost.toLocaleString("pt-br", { style: 'currency', currency: debt.cost.currency}),
+            }
+
+            return debtP; 
+        });
+
+        const csv = collectionToCSV(collection);
+        
+        const blob = new Blob([csv], { type: 'text/csv' });
+        
+        const url = URL.createObjectURL(blob);
+
+        window.open(url, "blank");
+
+        //downloadBlob(blob, `dividas-${date.toLocaleDateString()}.txt`);
+    }
+
     function openPaymentModal (id : number)
     {
         return (
@@ -40,6 +67,8 @@ export function Debts ({auth} : UserProps)
     }
 
     const NewDebtButton = (<button className='button' key={-1} onClick={openDebtModal}>Adicionar Dívida</button>)
+
+    const PrintDebtsButton = (<button className='button' key={-2} onClick={printDebtModal}>Imprimir</button>)
 
     function currencyString (valor : number, currency = "BRL")
     {
@@ -70,14 +99,15 @@ export function Debts ({auth} : UserProps)
         ];
 
         return (
-            <select value={
-                date.getMonth()} onChange={(e) => 
+            <select 
+                value={date.getMonth()} 
+                onChange={(e) =>
                 {
                     const d = new Date(now);
                     d.setMonth(Number(e.target.value));
                     setDate(d);
-                }
-            } >
+                }}
+            >
                 {mounts}
             </select>
         )
@@ -97,7 +127,7 @@ export function Debts ({auth} : UserProps)
 
         // value={filter["creditor"]}
         return (
-            <select onChange={filterHandler}>
+            <select onChange={filterHandler} value={status}>
                 {selectors}
             </select>
         );
@@ -117,7 +147,7 @@ export function Debts ({auth} : UserProps)
 
         // value={filter["creditor"]}
         return (
-            <select onChange={filterHandler}>
+            <select onChange={filterHandler} value={filter["creditor"]}>
                 {creditorsList}
             </select>
         );
@@ -138,6 +168,7 @@ export function Debts ({auth} : UserProps)
                         { renderStatusFilter () }
                         { renderUserFilter () }
                         { debts && NewDebtButton }
+                        { debts && PrintDebtsButton }
                     </span>
                 </span>
                 <div className='container'>
